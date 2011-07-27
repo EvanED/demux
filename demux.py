@@ -3,15 +3,36 @@
 import sys
 
 def shift(l):
+    """Removes and returns the first element of 'l'"""
     return l.pop(0)
     
 
 def debug(m):
+    """Writes the given object to stderr"""
     sys.stderr.write(str(m))
     pass
 
 
 def demux(specs, inputs):
+    """Demux the given 'input's with respect to 'specs'
+
+    - 'inputs' is a list of filenames (or - for stdin) to be read
+    
+    - 'specs' is a specification of regex -> file that should receive lines
+       matching that regex. It is a list of (string, string) tuples; the
+       first coordinate of each tuple is a regular expression string, and the
+       second coordinate is the name of the file (or - for stdout) that
+       should receive those lines.
+
+    Leading and trailing whitespace on each line is removed, and empty lines
+    (after that process) are discarded, for whatever reason.
+
+    If there is a line that matches no spec, then there is an assertion
+    violation.
+
+    Lines are only printed to the FIRST file with a matching regex.
+    """
+    
     import re
     # specs comes in as a list of (string, string) tuples. Convert the first
     # string to an actual regex object and the second to the corresponding
@@ -36,10 +57,13 @@ def demux(specs, inputs):
                     match_no += 1
                 else:
                     assert False
-                    
-    
+
+
 
 def open_or_std(filename, mode):
+    """Opens 'filename' with the given 'mode'. If 'filename' is "-", then
+    open either stdin or stdout as appropriate (given the mode)."""
+    
     #debug('Opening %s as %s\n' % (filename, mode))
     if filename == '-':
         if mode == 'r':
@@ -57,7 +81,7 @@ def main():
     specs = []
 
     # Command line syntax is one of the following:
-    #   demux [-e pattern filename]* [-d filename] -- [filename]*
+    #   demux [-e pattern filename]+ [-d filename] -- [filename]*
     #   demux -f specfile [-d filename] -- [filename]*
 
     shift(argv) # kill the script name
@@ -76,11 +100,13 @@ def main():
         assert shift(argv) == '-f'
         specs_file = shift(argv)
         with open_or_std(specs_file, 'r') as file:
+            debug('Processing specs from file %s' % specs_file)
             spec_no = 0
             for line in file.readlines():
                 line = line.strip()
                 split = line.split('<-', 1)
                 if len(split) != 2:
+                    debug('Skipping line %s' % line)
                     continue
                 [outfile, pattern] = split
                 outfile = outfile.strip()
@@ -90,6 +116,10 @@ def main():
                 spec_no += 1
 
     if len(argv) == 0 or argv[0] != '-d':
+        # If len(argv)==0 then the user obviously didn't give a default
+        # file. If the next token is not "-d", then either it is "--" or we
+        # will discover that fact (and give an error) in a bit. Either way,
+        # we put non-matching lines to standard out.
         default_file = '-'
     else:
         assert shift(argv) == '-d'
