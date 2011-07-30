@@ -1,0 +1,95 @@
+DEMUX(1)
+========
+:doctype: manpage
+
+
+NAME
+----
+demux - separate lines according to a collection of patterns
+
+
+SYNOPSIS
+--------
+*demux.py* (-e 'PATTERN' 'OUT_FILE'...)+ [-d 'DEF_FILE'] [-- 'IN_FILE' ...]
+*demux.py* -f 'PAT_FILE' [-d 'DEF_FILE'] [-- 'IN_FILE' ...]
+
+
+DESCRIPTION
+-----------
+*demux* searches the named input 'IN_FILE's (or standard input if no
+files are named, or if a single hyphen (-) is given as a file name),
+testing each line against a sequence of 'PATTERN's. The line is
+emitted to the 'OUT_FILE' correponding to the first pattern that
+matches. If no explicitly-specified pattern matches, the line is
+printed to 'DEF_FILE', or to standard output if none is specified.
+
+Each 'PATTERN' is a Python regular expression. 'PATTERN's can be
+specified in two ways. The first syntax form specifies 'PATTERN's on
+the command line, in which case the "corresponding" 'OUT_FILE' to a
+pattern is the file named directly after that pattern on the command
+line. The second syntax form names a pattern file 'PAT_FILE' that
+specifies both patterns and the names of the output format (see
+<<X1*,*PATTERN FILES*>>).
+
+OPTIONS
+-------
+*-d* 'DEF_FILE'::
+     Specifies a file that will receive any lines that do not match
+     any patterns. This is equivalent to *-e ".\*"* 'DEF_FILE'. If no
+     default file is specified, *demux* will write non-matching lines
+     to standard output. (This behavior can be explicitly requested by
+     specifying a hyphen (-) as 'DEF_FILE'.)
+
+*-e* 'PATTERN' 'OUT_FILE'::
+     Specifies a pattern/output file pair. When 'PATTERN' is the first
+     pattern that matches an input line, that line is written to
+     'OUT_FILE'. If 'OUT_FILE' is a hyphen (-), the line is written to
+     standard output.
+
+*-f* 'PAT_FILE'::
+     Specifies a file to read pattern/output file pairs from. This
+     takes the place of a sequence of *-e* arguments. See
+     <<X1*,*PATTERN FILES*>>.
+
+
+[[X1]]
+PATTERN FILES
+-------------
+*demux* has the ability to the list of patterns and output files from
+a file instead of the command line. The syntax for this file is a
+series of lines of the form::
+       'OUT_FILE' *<-* 'PATTERN'
+
+Using a pattern file behaves just as if each 'OUT_FILE'/'PATERN' pair
+in the file had been listed as a *-e* argument to the command.
+
+EXIT STATUS
+-----------
+*0*::
+	The comman run successfully. (Unlike *grep*, this is not
+	indicitive of any particular behavior having been seen with
+	regards to having seen any of the patterns.)
+
+*>0*::
+	There was a syntax error from the command or 'PAT_FILE', or
+	one of the files could not be opened.
+
+BUGS
+----
+
+None known. Please report any you encounter to *driscoll@cs.wisc.edu*
+or the Github repository
+*https://www.github.com/EvanED/demux*. (Feature requests are welcome
+too, but may not be acted upon. Feature requests with patches are even
+better. :-))
+
+AUTHOR
+------
+*demux* was written by Evan Driscoll.
+
+
+COPYING
+-------
+Copyright \(C) 2011 Evan Driscoll. Free use of this software is
+granted under the terms of the Apache License 2.0. See LICENSE.txt.
+
