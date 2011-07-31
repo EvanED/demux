@@ -42,7 +42,7 @@ Each \fIPATTERN\fR is a Python regular expression\&. \fIPATTERN\fRs can be speci
 \fB\-d\fR \fIDEF_FILE\fR
 .RS 4
 Specifies a file that will receive any lines that do not match any patterns\&. This is equivalent to
-\fB\-e "\&.\e\fR"*
+\fB\-e "\&.*"\fR
 \fIDEF_FILE\fR\&. If no default file is specified,
 \fBdemux\fR
 will write non\-matching lines to standard output\&. (This behavior can be explicitly requested by specifying a hyphen (\-) as
@@ -68,7 +68,7 @@ arguments\&. See
 .RE
 .SH "PATTERN FILES"
 .sp
-\fBdemux\fR has the ability to the list of patterns and output files from a file instead of the command line\&. The syntax for this file is a series of lines of the form:: \fIOUT_FILE\fR \fB←\fR \fIPATTERN\fR
+\fBdemux\fR has the ability to the list of patterns and output files from a file instead of the command line\&. The syntax for this file is a series of lines of the form \fIOUT_FILE\fR \fB\e<\e\-\fR \fIPATTERN\fR
 .sp
 Using a pattern file behaves just as if each \fIOUT_FILE\fR/\fIPATERN\fR pair in the file had been listed as a \fB\-e\fR argument to the command\&.
 .SH "EXIT STATUS"

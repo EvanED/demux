@@ -35,7 +35,7 @@ OPTIONS
 -------
 *-d* 'DEF_FILE'::
      Specifies a file that will receive any lines that do not match
-     any patterns. This is equivalent to *-e ".\*"* 'DEF_FILE'. If no
+     any patterns. This is equivalent to **-e ".\*"** 'DEF_FILE'. If no
      default file is specified, *demux* will write non-matching lines
      to standard output. (This behavior can be explicitly requested by
      specifying a hyphen (-) as 'DEF_FILE'.)
@@ -57,8 +57,7 @@ PATTERN FILES
 -------------
 *demux* has the ability to the list of patterns and output files from
 a file instead of the command line. The syntax for this file is a
-series of lines of the form::
-       'OUT_FILE' *<-* 'PATTERN'
+series of lines of the form  'OUT_FILE' **\<\-** 'PATTERN'
 
 Using a pattern file behaves just as if each 'OUT_FILE'/'PATERN' pair
 in the file had been listed as a *-e* argument to the command.
