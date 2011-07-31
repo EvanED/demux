@@ -57,7 +57,7 @@ PATTERN FILES
 -------------
 *demux* has the ability to the list of patterns and output files from
 a file instead of the command line. The syntax for this file is a
-series of lines of the form  'OUT_FILE' **\<\-** 'PATTERN'
+series of lines of the form  'OUT_FILE' **\<-** 'PATTERN'
 
 Using a pattern file behaves just as if each 'OUT_FILE'/'PATERN' pair
 in the file had been listed as a *-e* argument to the command.
