@@ -34,9 +34,9 @@ demux \- separate lines according to a collection of patterns
 \fBdemux\&.py\fR (\-e \fIPATTERN\fR \fIOUT_FILE\fR\&...)+ [\-d \fIDEF_FILE\fR] [\-\- \fIIN_FILE\fR \&...] \fBdemux\&.py\fR \-f \fIPAT_FILE\fR [\-d \fIDEF_FILE\fR] [\-\- \fIIN_FILE\fR \&...]
 .SH "DESCRIPTION"
 .sp
-\fBdemux\fR searches the named input \fIIN_FILE\(cqs (or standard input if no files are named, or if a single hyphen (\-) is given as a file name), testing each line against a sequence of \*(AqPATTERN\(cqs\&. The line is emitted to the \*(AqOUT_FILE\fR correponding to the first pattern that matches\&. If no explicitly\-specified pattern matches, the line is printed to \fIDEF_FILE\fR, or to standard output if none is specified\&.
+\fBdemux\fR searches the named input \fIIN_FILE\fRs (or standard input if no files are named, or if a single hyphen (\-) is given as a file name), testing each line against a sequence of \fIPATTERN\fRs\&. The line is emitted to the \fIOUT_FILE\fR correponding to the first pattern that matches\&. If no explicitly\-specified pattern matches, the line is printed to \fIDEF_FILE\fR, or to standard output if none is specified\&.
 .sp
-Each \fIPATTERN\fR is a Python regular expression\&. \fIPATTERN\(cqs can be specified in two ways\&. The first syntax form specifies \*(AqPATTERN\(cqs on the command line, in which case the "corresponding" \*(AqOUT_FILE\fR to a pattern is the file named directly after that pattern on the command line\&. The second syntax form names a pattern file \fIPAT_FILE\fR that specifies both patterns and the names of the output format (see PATTERN FILES)\&.
+Each \fIPATTERN\fR is a Python regular expression\&. \fIPATTERN\fRs can be specified in two ways\&. The first syntax form specifies \fIPATTERN\fRs on the command line, in which case the "corresponding" \fIOUT_FILE\fR to a pattern is the file named directly after that pattern on the command line\&. The second syntax form names a pattern file \fIPAT_FILE\fR that specifies both patterns and the names of the output format (see PATTERN FILES)\&.
 .SH "OPTIONS"
 .PP
 \fB\-d\fR \fIDEF_FILE\fR

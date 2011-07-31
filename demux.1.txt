@@ -16,15 +16,15 @@ SYNOPSIS
 
 DESCRIPTION
 -----------
-*demux* searches the named input 'IN_FILE's (or standard input if no
+*demux* searches the named input __IN_FILE__s (or standard input if no
 files are named, or if a single hyphen (-) is given as a file name),
-testing each line against a sequence of 'PATTERN's. The line is
+testing each line against a sequence of __PATTERN__s. The line is
 emitted to the 'OUT_FILE' correponding to the first pattern that
 matches. If no explicitly-specified pattern matches, the line is
 printed to 'DEF_FILE', or to standard output if none is specified.
 
-Each 'PATTERN' is a Python regular expression. 'PATTERN's can be
-specified in two ways. The first syntax form specifies 'PATTERN's on
+Each 'PATTERN' is a Python regular expression. __PATTERN__s can be
+specified in two ways. The first syntax form specifies __PATTERN__s on
 the command line, in which case the "corresponding" 'OUT_FILE' to a
 pattern is the file named directly after that pattern on the command
 line. The second syntax form names a pattern file 'PAT_FILE' that
