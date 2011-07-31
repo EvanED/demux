@@ -19,7 +19,7 @@ DESCRIPTION
 *demux* searches the named input __IN_FILE__s (or standard input if no
 files are named, or if a single hyphen (-) is given as a file name),
 testing each line against a sequence of __PATTERN__s. The line is
-emitted to the 'OUT_FILE' correponding to the first pattern that
+emitted to the 'OUT_FILE' corresponding to the first pattern that
 matches. If no explicitly-specified pattern matches, the line is
 printed to 'DEF_FILE', or to standard output if none is specified.
 
@@ -59,14 +59,14 @@ PATTERN FILES
 a file instead of the command line. The syntax for this file is a
 series of lines of the form  'OUT_FILE' **\<-** 'PATTERN'
 
-Using a pattern file behaves just as if each 'OUT_FILE'/'PATERN' pair
+Using a pattern file behaves just as if each 'OUT_FILE'/'PATTERN' pair
 in the file had been listed as a *-e* argument to the command.
 
 EXIT STATUS
 -----------
 *0*::
-	The comman run successfully. (Unlike *grep*, this is not
-	indicitive of any particular behavior having been seen with
+	The command run successfully. (Unlike *grep*, this is not
+	indicative of any particular behavior having been seen with
 	regards to having seen any of the patterns.)
 
 *>0*::
