@@ -29,7 +29,7 @@ the command line, in which case the "corresponding" 'OUT_FILE' to a
 pattern is the file named directly after that pattern on the command
 line. The second syntax form names a pattern file 'PAT_FILE' that
 specifies both patterns and the names of the output format (see
-<<X1*,*PATTERN FILES*>>).
+<<X1,PATTERN FILES>>).
 
 OPTIONS
 -------
@@ -49,7 +49,7 @@ OPTIONS
 *-f* 'PAT_FILE'::
      Specifies a file to read pattern/output file pairs from. This
      takes the place of a sequence of *-e* arguments. See
-     <<X1*,*PATTERN FILES*>>.
+     <<X1,*PATTERN FILES*>>.
 
 
 [[X1]]
