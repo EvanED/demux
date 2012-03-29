@@ -1,0 +1,95 @@
+'\" t
+.\"     Title: demux
+.\"    Author: [see the "AUTHOR" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 07/30/2011
+.\"    Manual: \ \&
+.\"    Source: \ \&
+.\"  Language: English
+.\"
+.TH "DEMUX" "1" "07/30/2011" "\ \&" "\ \&"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+demux \- separate lines according to a collection of patterns
+.SH "SYNOPSIS"
+.sp
+\fBdemux\&.py\fR (\-e \fIPATTERN\fR \fIOUT_FILE\fR\&...)+ [\-d \fIDEF_FILE\fR] [\-\- \fIIN_FILE\fR \&...] \fBdemux\&.py\fR \-f \fIPAT_FILE\fR [\-d \fIDEF_FILE\fR] [\-\- \fIIN_FILE\fR \&...]
+.SH "DESCRIPTION"
+.sp
+\fBdemux\fR searches the named input \fIIN_FILE\fRs (or standard input if no files are named, or if a single hyphen (\-) is given as a file name), testing each line against a sequence of \fIPATTERN\fRs\&. The line is emitted to the \fIOUT_FILE\fR correponding to the first pattern that matches\&. If no explicitly\-specified pattern matches, the line is printed to \fIDEF_FILE\fR, or to standard output if none is specified\&.
+.sp
+Each \fIPATTERN\fR is a Python regular expression\&. \fIPATTERN\fRs can be specified in two ways\&. The first syntax form specifies \fIPATTERN\fRs on the command line, in which case the "corresponding" \fIOUT_FILE\fR to a pattern is the file named directly after that pattern on the command line\&. The second syntax form names a pattern file \fIPAT_FILE\fR that specifies both patterns and the names of the output format (see PATTERN FILES)\&.
+.SH "OPTIONS"
+.PP
+\fB\-d\fR \fIDEF_FILE\fR
+.RS 4
+Specifies a file that will receive any lines that do not match any patterns\&. This is equivalent to
+\fB\-e "\&.*"\fR
+\fIDEF_FILE\fR\&. If no default file is specified,
+\fBdemux\fR
+will write non\-matching lines to standard output\&. (This behavior can be explicitly requested by specifying a hyphen (\-) as
+\fIDEF_FILE\fR\&.)
+.RE
+.PP
+\fB\-e\fR \fIPATTERN\fR \fIOUT_FILE\fR
+.RS 4
+Specifies a pattern/output file pair\&. When
+\fIPATTERN\fR
+is the first pattern that matches an input line, that line is written to
+\fIOUT_FILE\fR\&. If
+\fIOUT_FILE\fR
+is a hyphen (\-), the line is written to standard output\&.
+.RE
+.PP
+\fB\-f\fR \fIPAT_FILE\fR
+.RS 4
+Specifies a file to read pattern/output file pairs from\&. This takes the place of a sequence of
+\fB\-e\fR
+arguments\&. See
+\fBPATTERN FILES\fR\&.
+.RE
+.SH "PATTERN FILES"
+.sp
+\fBdemux\fR has the ability to the list of patterns and output files from a file instead of the command line\&. The syntax for this file is a series of lines of the form \fIOUT_FILE\fR \fB<\-\fR \fIPATTERN\fR
+.sp
+Using a pattern file behaves just as if each \fIOUT_FILE\fR/\fIPATERN\fR pair in the file had been listed as a \fB\-e\fR argument to the command\&.
+.SH "EXIT STATUS"
+.PP
+\fB0\fR
+.RS 4
+The comman run successfully\&. (Unlike
+\fBgrep\fR, this is not indicitive of any particular behavior having been seen with regards to having seen any of the patterns\&.)
+.RE
+.PP
+\fB>0\fR
+.RS 4
+There was a syntax error from the command or
+\fIPAT_FILE\fR, or one of the files could not be opened\&.
+.RE
+.SH "BUGS"
+.sp
+None known\&. Please report any you encounter to \fBdriscoll@cs\&.wisc\&.edu\fR or the Github repository \fBhttps://www\&.github\&.com/EvanED/demux\fR\&. (Feature requests are welcome too, but may not be acted upon\&. Feature requests with patches are even better\&. :\-))
+.SH "AUTHOR"
+.sp
+\fBdemux\fR was written by Evan Driscoll\&.
+.SH "COPYING"
+.sp
+Copyright (C) 2011 Evan Driscoll\&. Free use of this software is granted under the terms of the Apache License 2\&.0\&. See LICENSE\&.txt\&.
